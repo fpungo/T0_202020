@@ -8,6 +8,7 @@ package model.data_structures;
  *
  */
 public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
+	
 		/**
 		 * Capacidad maxima del arreglo
 		 */
@@ -19,7 +20,7 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
         /**
          * Arreglo de elementos de tamaNo maximo
          */
-        private String elementos[ ];
+        private T elementos[ ];
 
         /**
          * Construir un arreglo con la capacidad maxima inicial.
@@ -27,18 +28,18 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
          */
 		public ArregloDinamico( int max )
         {
-               elementos = new String[max];
+               elementos = (T[]) new Comparable [max];
                tamanoMax = max;
                tamanoAct = 0;
         }
         
-		public void agregar( String dato )
+		public void agregar( T dato )
         {
                if ( tamanoAct == tamanoMax )
                {  // caso de arreglo lleno (aumentar tamaNo)
                     tamanoMax = 2 * tamanoMax;
-                    String [ ] copia = elementos;
-                    elementos = new String[tamanoMax];
+                    T [ ] copia = elementos;
+                    elementos = (T[]) new Comparable[tamanoMax];
                     for ( int i = 0; i < tamanoAct; i++)
                     {
                      	 elementos[i] = copia[i];
@@ -57,27 +58,34 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 			return tamanoAct;
 		}
 
-		public String darElemento(int i) {
-			// TODO implementar
-			return null;
-		}
-
-		public String buscar(Integer dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			return null;
-		}
-
-		public String eliminar(Integer dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			return null;
-		}
-
-		@Override
-		public void agregar(Integer dato) {
-			// TODO Auto-generated method stub
+		public T darElemento(int i) {
 			
+			return elementos[i];
 		}
+
+		public T buscar(T  dato) {
+			T solucion = null;
+			boolean encontro = false;
+			
+			for(int i = 0; i< tamanoAct&&!encontro; i++ )
+			{
+				
+				if(elementos[i].compareTo(dato)== 0)
+				{
+					encontro = true;
+					solucion= elementos[i];
+				}
+			}
+				return solucion;
+			}
+			
+		public T eliminar(T dato) {
+			if(buscar(dato)!= null){
+			     dato = null;
+			}
+			return dato;
+		}
+			
+
 
 }

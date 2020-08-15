@@ -11,7 +11,7 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private IArregloDinamico <Integer> datos;
+	private IArregloDinamico<Integer> datos;
 	
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
@@ -53,7 +53,7 @@ public class Modelo {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public String buscar(Integer dato)
+	public Comparable buscar(Integer dato)
 	{
 		return datos.buscar(dato);
 	}
@@ -63,7 +63,7 @@ public class Modelo {
 	 * @param dato Dato a eliminar
 	 * @return dato eliminado
 	 */
-	public String eliminar(Integer dato)
+	public Comparable eliminar(Integer dato)
 	{
 		return datos.eliminar(dato);
 	}

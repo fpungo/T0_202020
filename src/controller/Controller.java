@@ -27,8 +27,8 @@ public class Controller {
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-	     Integer dato ;
-		String respuesta = "";
+	     Integer dato;
+		Comparable <Integer> respuesta;
 
 		while( !fin ){
 			view.printMenu();
