@@ -19,7 +19,7 @@ import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
  */
 public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinamico<T> {
 
-	public static final String SEPARATOR=";";
+
 
 
 	/**
@@ -34,7 +34,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 	 * Arreglo de elementos de tamaNo maximo
 	 */
 	private T elementos[ ];
-
+	
 	/**
 	 * Construir un arreglo con la capacidad maxima inicial.
 	 * @param max Capacidad maxima inicial
@@ -44,8 +44,6 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		elementos =(T[]) new Comparable[max];
 		tamanoMax = max;
 		tamanoAct = 0;
-
-
 	}
 
 
@@ -266,63 +264,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		return getElement(i);
 	}
 
-	public static void main(String[] args) {
-		BufferedReader bufferLectura = null;
-		ArregloDinamico id = new ArregloDinamico<>(3000);
-		ArregloDinamico director = new ArregloDinamico<>(3000);
-		ArregloDinamico votacion = new ArregloDinamico<>(3000);
 
-
-		try{
-			bufferLectura = new BufferedReader(new FileReader("C:\\Users\\User\\Documents\\Talleres\\Taller_1\\T1_202020\\data\\MoviesCastingRaw-small.csv"));
-
-			String linea = bufferLectura.readLine();
-
-			while (linea!= null){
-				String[] campos = linea.split(SEPARATOR);
-
-				id.agregar(campos[0]);
-				director.agregar(campos[12]);
-
-				linea = bufferLectura.readLine();
-
-			}
-
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-
-		try{
-			bufferLectura = new BufferedReader(new FileReader("C:\\Users\\User\\Documents\\Talleres\\Taller_1\\T1_202020\\data\\SmallMoviesDetailsCleaned.csv"));
-
-			String linea = bufferLectura.readLine();
-
-			while (linea!= null){
-				String[] campos = linea.split(SEPARATOR);
-
-				votacion.agregar(campos[17]);
-
-
-				linea = bufferLectura.readLine();
-
-			}
-			System.out.println("Id= " + id.darElemento(11) + ",  director= " + director.darElemento(11) + ",    la Votacion de la pelicula es : " + votacion.darElemento(11));
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-		finally {
-			if( bufferLectura != null){
-				try{
-					bufferLectura.close();
-				}
-				catch(IOException e){
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 }
 
 
