@@ -54,7 +54,7 @@ public class Controller {
 				case 3:
 					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
 					dato = lector.next();
-					respuesta = modelo.buscar(dato);
+					respuesta = (String) modelo.buscar(dato);
 					if ( respuesta != null)
 					{
 						view.printMessage("Dato encontrado: "+ respuesta);
@@ -69,7 +69,7 @@ public class Controller {
 				case 4:
 					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
 					dato = lector.next();
-					respuesta = modelo.eliminar(dato);
+					respuesta = (String) modelo.eliminar(dato);
 					if ( respuesta != null)
 					{
 						view.printMessage("Dato eliminado "+ respuesta);

@@ -53,9 +53,9 @@ public class Modelo {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public String buscar(String dato)
+	public Comparable buscar(String dato)
 	{
-		return datos.buscar(dato);
+		return  datos.buscar(dato);
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class Modelo {
 	 * @param dato Dato a eliminar
 	 * @return dato eliminado
 	 */
-	public String eliminar(String dato)
+	public Comparable eliminar(String dato)
 	{
 		return datos.eliminar(dato);
 	}
