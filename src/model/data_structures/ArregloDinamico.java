@@ -1,4 +1,14 @@
 package model.data_structures;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
+
 
 /**
  * 2019-01-23
@@ -8,6 +18,10 @@ package model.data_structures;
  *
  */
 public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinamico<T> {
+	
+	public static final String SEPARATOR=";";
+	
+	
 	/**
 	 * Capacidad maxima del arreglo
 	 */
@@ -30,7 +44,10 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		elementos =(T[]) new Comparable[max];
 		tamanoMax = max;
 		tamanoAct = 0;
-	}
+
+
+		   }
+	
 
 	public void agregar( T dato )
 	{
@@ -49,7 +66,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		tamanoAct++;
 	}
 
-	public T darElemento(int i) {
+	public T getElement(int i) {
 
 		return i < elementos.length && i >= 0? elementos[i]:null;
 	}
@@ -100,7 +117,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		return tamanoMax;
 	}
 
-	public int darTamano() 
+	public int size() 
 	{
 		return tamanoAct;
 	}
@@ -110,7 +127,215 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 	{
 		return elementos[i];
 	}
+	public void addFirst(T elemento)
+	{
+		T[ ] temp = elementos;
+		if(tamanoAct == tamanoMax)
+			tamanoMax *= 2;
+
+		elementos =(T[]) new Comparable[tamanoMax];
+		elementos[0] = elemento;
+
+		for(int i = 0; i < tamanoAct;i++)
+			elementos[i+1] = temp[i];
+
+		tamanoAct++;
 
 
+	}
 
+	public void addLast(T dato)
+	{
+		if ( tamanoAct == tamanoMax )
+		{  // caso de arreglo lleno (aumentar tamaNo)
+			tamanoMax = 2 * tamanoMax;
+			T [ ] copia = elementos;
+			elementos =(T[]) new Comparable[tamanoMax];
+			for ( int i = 0; i < tamanoAct; i++)
+			{
+				elementos[i] = copia[i];
+			} 
+			System.out.println("Arreglo lleno: " + tamanoAct + " - Arreglo duplicado: " + tamanoMax);
+		}	
+		elementos[tamanoAct] = dato;
+		tamanoAct++;
+	}
+
+	public void  insertElement(T element, int pos)
+	{
+		T[ ] temp = elementos;
+		if(tamanoAct == tamanoMax)
+			tamanoMax *= 2;
+
+		elementos =(T[]) new Comparable[tamanoMax];
+		elementos[pos] = element;
+
+		for(int i = pos; i < tamanoAct;i++)
+			elementos[i+1] = temp[i];
+
+		tamanoAct++; 
+	}
+
+	public T removeFirst( )
+	{
+		T temp = elementos[0];
+		elementos[0] = null;
+
+		for(int i = 0; i+1 < tamanoAct;i++)
+			elementos[i] = elementos[i+1];
+
+		tamanoAct--;
+		return temp;
+	}
+
+	public T removeLast( )
+	{
+		T temp = elementos[tamanoAct];
+		elementos[tamanoAct] = null;
+		tamanoAct--;
+		return temp;
+	}
+
+	public T deleteElement(int pos)
+	{
+		T temp = elementos[pos];
+		elementos[pos] = null;
+
+		for(int i = pos; i+1 < tamanoAct;i++)
+			elementos[i] = elementos[i+1];
+
+		tamanoAct--;
+		return temp;
+	}
+
+	public T firstElement( ) 
+	{
+		return elementos[0];
+	}
+	
+		public T lastElement( )
+		{
+	
+			return elementos[tamanoAct];
+
+		}
+
+	public boolean isEmpty()
+	{
+		return elementos[0] == null?true:false;
+
+	}
+	public int isPresentBinary (T element) 
+	{
+		return Arrays.binarySearch(elementos, element);
+	}
+
+	public int isPresent (T element) 
+	{
+		int i = 0;
+		int resp = -1;
+		while(i < elementos.length && resp == -1)
+		{
+			if(elementos[i].equals(element))
+				resp = i;
+			i++;
+		}
+
+		return resp;
+	}
+	public void exchange (int pos1, int pos2)
+	{
+		T temp = elementos[pos1];
+		elementos[pos1] = elementos[pos2];
+		elementos[pos2] = temp;
+	}
+
+	public void changeInfo (int pos, T elem)
+	{
+		elementos[pos] = elem;
+	}
+
+	public int darTamano() 
+	{
+		return tamanoAct;
+	}
+
+
+	public T darElemento(int i) 
+	{
+		return getElement(i);
+	}
+
+	public static void main(String[] args) {
+    	BufferedReader bufferLectura = null;
+    	ArregloDinamico id = new ArregloDinamico<>(3000);
+    	ArregloDinamico director = new ArregloDinamico<>(3000);
+    	ArregloDinamico votacion = new ArregloDinamico<>(3000);
+    	
+   
+    	try{
+    		bufferLectura = new BufferedReader(new FileReader("C:\\Users\\User\\Documents\\Talleres\\Taller_1\\T1_202020\\data\\MoviesCastingRaw-small.csv"));
+    		
+    		String linea = bufferLectura.readLine();
+    		
+    		while (linea!= null){
+    			  String[] campos = linea.split(SEPARATOR);
+    			   
+    			   id.agregar(campos[0]);
+    			   director.agregar(campos[12]);
+  
+    			  linea = bufferLectura.readLine();
+    			
+    		}
+    		
+    	}
+    	catch(IOException e){
+    		e.printStackTrace();
+    	}
+    	
+    	try{
+    		bufferLectura = new BufferedReader(new FileReader("C:\\Users\\User\\Documents\\Talleres\\Taller_1\\T1_202020\\data\\SmallMoviesDetailsCleaned.csv"));
+    		
+    		String linea = bufferLectura.readLine();
+    		
+    		while (linea!= null){
+    			  String[] campos = linea.split(SEPARATOR);
+    			   
+    			   votacion.agregar(campos[17]);
+    			   
+  
+    			  linea = bufferLectura.readLine();
+    			
+    		}
+    		System.out.println("Id= " + id.darElemento(11) + ",  director= " + director.darElemento(11) + ",    la Votacion de la pelicula es : " + votacion.darElemento(11));
+    	}
+    	catch(IOException e){
+    		e.printStackTrace();
+    	}
+    	finally {
+    		if( bufferLectura != null){
+    			try{
+    				bufferLectura.close();
+    			}
+    			catch(IOException e){
+    				e.printStackTrace();
+    			}
+    		}
+    	}
+    	
+    	
+    
+    	     
+    	       
+    	}
+	    
 }
+
+	    
+
+
+	                               
+	   
+	           
+	    	
+
