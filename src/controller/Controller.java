@@ -2,13 +2,13 @@ package controller;
 
 import java.util.Scanner;
 
-import model.logic.Modelo;
+import model.logic.Cinema;
 import view.View;
 
 public class Controller {
 
 	/* Instancia del Modelo*/
-	private Modelo modelo;
+	private Cinema modelo;
 	
 	/* Instancia de la Vista*/
 	private View view;
@@ -20,7 +20,7 @@ public class Controller {
 	public Controller ()
 	{
 		view = new View();
-		modelo = new Modelo();
+		modelo = new Cinema();
 	}
 		
 	public void run() 
@@ -38,7 +38,7 @@ public class Controller {
 				case 1:
 					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
 				    int capacidad = lector.nextInt();
-				    modelo = new Modelo(capacidad); 
+				    modelo = new Cinema(capacidad); 
 				    view.printMessage("Arreglo Dinamico creado");
 				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 					break;

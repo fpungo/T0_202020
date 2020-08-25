@@ -1,6 +1,6 @@
 package view;
 
-import model.logic.Modelo;
+import model.logic.Cinema;
 
 public class View 
 {
@@ -28,7 +28,7 @@ public class View
 			System.out.println(mensaje);
 		}		
 		
-		public void printModelo(Modelo modelo)
+		public void printModelo(Cinema modelo)
 		{
 			// TODO implementar
 		}

@@ -1,19 +1,20 @@
 package test.logic;
 
 import static org.junit.Assert.*;
-import model.logic.Modelo;
+
+import model.logic.Cinema;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestModelo {
 	
-	private Modelo modelo;
+	private Cinema modelo;
 	private static int CAPACIDAD=100;
 	
 	@Before
 	public void setUp1() {
-		modelo= new Modelo(CAPACIDAD);
+		modelo= new Cinema(CAPACIDAD);
 	}
 
 	public void setUp2() {

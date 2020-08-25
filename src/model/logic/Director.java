@@ -1,8 +1,10 @@
-package model.data_structures;
+package model.logic;
+
+import model.data_structures.ArregloDinamico;
 
 public class Director implements Comparable<Director>
 {
-	
+	private ArregloDinamico<Pelicula> peliculas;
 	
 	
 	public Director(String id, String nombre)
