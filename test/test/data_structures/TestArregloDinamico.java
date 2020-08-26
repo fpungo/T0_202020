@@ -170,18 +170,31 @@ public class TestArregloDinamico {
 	@Test
 	public void testIsPresent ( ) 
 	{
+		assertEquals(-1,arreglo.isPresent("No existe"));
+		setUp2();
+		assertEquals(195, arreglo.isPresent("195"));
+		assertEquals(123, arreglo.isPresent("123"));
 
 	}
 	@Test
 	public void testExchange ( )
 	{
+		setUp2();
+		arreglo.exchange(0, 199);
+		assertEquals("0", arreglo.getElement(199));
+		assertEquals("199", arreglo.getElement(0));
 		
 	}
 
 	@Test
 	public void testChangeInfo ( )
 	{
-		
+		setUp2();
+		arreglo.changeInfo(0,"a");
+		assertEquals("a", arreglo.getElement(0));
+		arreglo.changeInfo(16,"r");
+		assertEquals("r", arreglo.getElement(16));
+	
 	}
 
 }
