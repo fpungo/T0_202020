@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
+import model.logic.Pelicula;
 
 
 /**
@@ -263,7 +264,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 	{
 		return getElement(i);
 	}
-
+	 
 
 }
 
