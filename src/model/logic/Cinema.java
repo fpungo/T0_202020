@@ -110,7 +110,7 @@ public class Cinema {
 			linea = bufferLectura.readLine();
 			while (linea!= null){
 				String[] campos = linea.split(SEPARATOR);
-				Pelicula temp = new Pelicula(Integer.parseInt(campos[0].trim()), campos[1], campos[2], campos[3], campos[4], campos[5], campos[6], campos[7], campos[8], campos[9], campos[10], campos[11], campos[12], campos[13], campos[14], campos[15], campos[16], Integer.parseInt(campos[17].trim()), campos[18], campos[19], campos[20], null);
+				Pelicula temp = new Pelicula(Integer.parseInt(campos[0].trim()), campos[1], campos[2], campos[3], campos[4], campos[5], campos[6], campos[7], campos[8], campos[9], campos[10], campos[11], campos[12], campos[13], campos[14], campos[15], campos[16], Double.parseDouble(campos[17].trim()), campos[18], campos[19], campos[20], null);
 				peliculas.agregar(temp);
 				linea = bufferLectura.readLine();
 

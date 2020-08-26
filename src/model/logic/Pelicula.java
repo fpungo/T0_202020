@@ -19,13 +19,13 @@ public class Pelicula implements Comparable<Pelicula>
 	private String status; 
 	private String tagline; 
 	private String title;
-	private int vote_average;
+	private double vote_average;
 	private String vote_count;
 	private String production_companies_number;
 	private String spoken_languages_number;
 	private Casting cast;
 
-	public Pelicula(int pId, String pPresupuesto, String pGeneros, String pImdb_id, String pLenguajeOriginal, String pTituloOriginal, String pDescripcion, String pPopularidad, String pCompaniasProductoras, String pProduction_countries, String pRelease_date, String pRevenue, String pRuntime, String pSpoken_languages, String pStatus, String pTagline, String pTitle, int pVote_average, String pVote_count, String pProduction_companies_number, String pSpoken_languages_number, Casting nCast)
+	public Pelicula(int pId, String pPresupuesto, String pGeneros, String pImdb_id, String pLenguajeOriginal, String pTituloOriginal, String pDescripcion, String pPopularidad, String pCompaniasProductoras, String pProduction_countries, String pRelease_date, String pRevenue, String pRuntime, String pSpoken_languages, String pStatus, String pTagline, String pTitle, double pVoteAverage, String pVote_count, String pProduction_companies_number, String pSpoken_languages_number, Casting nCast)
 	{
 		id = pId; 
 		presupuesto = pPresupuesto;
@@ -44,7 +44,7 @@ public class Pelicula implements Comparable<Pelicula>
 		status = pStatus;
 		tagline = pTagline;
 		title = pTitle;
-		vote_average = pVote_average;
+		vote_average = pVoteAverage;
 		vote_count = pVote_count;
 		production_companies_number = pProduction_companies_number;
 		spoken_languages_number = pSpoken_languages_number;
@@ -119,7 +119,7 @@ public class Pelicula implements Comparable<Pelicula>
 	{
 		return title;
 	}
-	public int darVote_average()
+	public Double darVote_average()
 	{
 		return vote_average;
 	}
@@ -210,7 +210,7 @@ public class Pelicula implements Comparable<Pelicula>
 	{
 		title = nTitle;
 	}
-	public void cambiarVote_average(int nVote_average)
+	public void cambiarVote_average(Double nVote_average)
 	{
 		vote_average = nVote_average;
 	}
