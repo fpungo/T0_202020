@@ -3,6 +3,7 @@ package controller;
 import java.util.Scanner;
 
 import model.logic.Cinema;
+import model.logic.Pelicula;
 import view.View;
 
 public class Controller {
@@ -38,58 +39,23 @@ public class Controller {
 				case 1:
 				    modelo = new Cinema(3000); 
 				    modelo.CargarArchivos();
-				    view.printMessage("Arreglo Dinamico creado");
-				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+				    view.printMessage("datos primera pelicula: " + modelo.darPeliculas().firstElement());
+				    view.printMessage("datos ultima pelicula: " + modelo.darPeliculas().lastElement());
+				    view.printMessage("La cantidad total de peliculas es: " + modelo.darTamano());
 					break;
 
 				case 2:
-					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.nextInt();
+		
+					for(int i= 0; i<modelo.darBuenasPeliculas(respuesta).size();i++){
 					
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+						Pelicula actual = modelo.darBuenasPeliculas(respuesta).darElemento(i);
+					 String loBasico = "los datos son: " + actual.darId() + actual.darTitle() + actual.darGeneros() + actual.darRelease_date() + actual.darCasting();
+						
+					 view.printMessage(loBasico);
+					}
 					break;
 
-				case 3:
-					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-					dato = lector.nextInt();
-					respuesta = (String) modelo.buscar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato encontrado: "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO encontrado");
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 4:
-					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-					dato = lector.nextInt();
-					respuesta = (String) modelo.eliminar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato eliminado "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO eliminado");							
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 5: 
-					view.printMessage("--------- \nContenido del Arreglo: ");
-					view.printModelo(modelo);
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;	
-					
-				case 6: 
-					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-					lector.close();
-					fin = true;
-					break;	
+			
 
 				default: 
 					view.printMessage("--------- \n Opcion Invalida !! \n---------");
