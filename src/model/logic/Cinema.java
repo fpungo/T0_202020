@@ -45,7 +45,7 @@ public class Cinema {
 	 */
 	public int darTamano()
 	{
-		return datos.darTamano();
+		return datos.size();
 	}
 
 	/**

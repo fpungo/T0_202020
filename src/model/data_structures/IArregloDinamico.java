@@ -12,14 +12,14 @@ public interface IArregloDinamico <T extends Comparable<T>> {
 	 * Retornar el numero de elementos presentes en el arreglo
 	 * @return
 	 */
-	int darTamano( );
+	int size( );
 	
 	/**
 	 * Retornar el elemento en la posicion i
 	 * @param i posicion de consulta
 	 * @return elemento de consulta. null si no hay elemento en posicion.
 	 */
-	T darElemento( Integer i );
+	T getElement( int i );
 
 	/**
 	 * Agregar un dato de forma compacta (en la primera casilla disponible) 

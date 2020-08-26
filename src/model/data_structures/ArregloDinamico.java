@@ -72,14 +72,17 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 	public T buscar(T dato) {
 		// TODO implementar
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-
-		for(T act:elementos )
+		int i = 0;
+		T a = elementos[0];
+		while(i < elementos.length && a != null)
 		{
-			if(act.compareTo(dato) == 0 )
-				return (T) act;
+			if(a.compareTo(dato) == 0 )
+				return (T) a;
+			i++;
+			a = elementos[i];
 		}
 
-		return (T) null;
+		return null;
 	}
 
 	public T eliminar(T dato) {
@@ -179,7 +182,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		T temp = elementos[0];
 		elementos[0] = null;
 
-		for(int i = 0; i+1 < tamanoAct;i++)
+		for(int i = 0; i+1 < tamanoAct && elementos[i+1] != null;i++)
 			elementos[i] = elementos[i+1];
 
 		tamanoAct--;
@@ -188,8 +191,8 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 
 	public T removeLast( )
 	{
-		T temp = elementos[tamanoAct];
-		elementos[tamanoAct] = null;
+		T temp = elementos[tamanoAct-1];
+		elementos[tamanoAct-1] = null;
 		tamanoAct--;
 		return temp;
 	}
@@ -213,9 +216,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 
 	public T lastElement( )
 	{
-
-		return elementos[tamanoAct];
-
+		return tamanoAct > 0 ? elementos[tamanoAct-1] :null;
 	}
 
 	public boolean isEmpty()
@@ -253,16 +254,6 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		elementos[pos] = elem;
 	}
 
-	public int darTamano() 
-	{
-		return tamanoAct;
-	}
-
-
-	public T darElemento(int i) 
-	{
-		return getElement(i);
-	}
 
 
 }
