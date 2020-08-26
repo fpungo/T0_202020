@@ -255,9 +255,7 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		elementos[pos] = elem;
 	}
 
-<<<<<<< HEAD
 
-=======
 	public int darTamano() 
 	{
 		return tamanoAct;
@@ -269,8 +267,6 @@ public class ArregloDinamico <T extends Comparable<T>> implements IArregloDinami
 		return getElement(i);
 	}
 	 
->>>>>>> 876659cde7c95d2a2b46aa36ea28b9ebe197d4e1
-
 }
 
 

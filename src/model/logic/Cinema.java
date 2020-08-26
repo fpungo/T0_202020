@@ -3,7 +3,9 @@ package model.logic;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import controller.Controller;
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
 
@@ -22,11 +24,14 @@ public class Cinema {
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public static final String SEPARATOR=";";
+	
 	private ArregloDinamico<Pelicula> peliculas; 
+	
+	private ArregloDinamico<Director> directores;
 
 	public Cinema()
 	{
-		peliculas = new ArregloDinamico<Pelicula>(4000);
+		
 	}
 
 	public Cinema(int tamano)
@@ -45,16 +50,16 @@ public class Cinema {
 	 */
 	public int darTamano()
 	{
-		return datos.size();
+		return peliculas.size();
 	}
 
 	/**
 	 * Requerimiento de agregar dato
 	 * @param dato
 	 */
-	public void agregar(String dato)
+	public void agregar(Pelicula dato)
 	{	
-		datos.agregar(dato);
+		peliculas.agregar(dato);
 	}
 	
 	/**
@@ -62,9 +67,9 @@ public class Cinema {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public Comparable buscar(String dato)
+	public Comparable buscar(int pos)
 	{
-		return  datos.buscar(dato);
+		return  peliculas.getElement(pos);
 	}
 	
 	/**
@@ -72,12 +77,25 @@ public class Cinema {
 	 * @param dato Dato a eliminar
 	 * @return dato eliminado
 	 */
-	public Comparable eliminar(String dato)
+	public Comparable eliminar(int pos)
 	{
-		return datos.eliminar(dato);
+		return peliculas.deleteElement(pos);
 	}
 
-	
+	public ArregloDinamico<Pelicula> darBuenasPeliculas(String director)
+	{
+		ArregloDinamico<Pelicula> buenas = new ArregloDinamico<Pelicula>(50);
+		for(int i = 0; i < peliculas.size(); i++)
+		{
+			Pelicula act = peliculas.getElement(i);
+			if(act.darCasting().directorName().equals(director) && act.darVote_average() >=6)
+			{
+				buenas.addLast(act);
+			}
+		}
+		return buenas;
+		
+	}
 	public void CargarArchivos()
 	{
 
@@ -86,13 +104,13 @@ public class Cinema {
 
 
 		try{
-			bufferLectura = new BufferedReader(new FileReader("./data\\MoviesCastingRaw-small.csv"));
+			bufferLectura = new BufferedReader(new FileReader(".//data\\SmallMoviesDetailsCleaned.csv"));
 
 			String linea = bufferLectura.readLine();
-
+			linea = bufferLectura.readLine();
 			while (linea!= null){
 				String[] campos = linea.split(SEPARATOR);
-				Pelicula temp = null;// (campos[0], campos[12])
+				Pelicula temp = new Pelicula(Integer.parseInt(campos[0].trim()), campos[1], campos[2], campos[3], campos[4], campos[5], campos[6], campos[7], campos[8], campos[9], campos[10], campos[11], campos[12], campos[13], campos[14], campos[15], campos[16], Integer.parseInt(campos[17].trim()), campos[18], campos[19], campos[20], null);
 				peliculas.agregar(temp);
 				linea = bufferLectura.readLine();
 
@@ -105,17 +123,17 @@ public class Cinema {
 		}
 
 		try{
-			bufferLectura = new BufferedReader(new FileReader(".//data\\SmallMoviesDetailsCleaned.csv"));
+			bufferLectura = new BufferedReader(new FileReader("./data\\MoviesCastingRaw-small.csv"));
 
 			String linea = bufferLectura.readLine();
-
-			while (linea!= null){
+			linea = bufferLectura.readLine();
+			int i = 0;
+			while (linea!= null)
+			{
 				String[] campos = linea.split(SEPARATOR);
-
-				votacion.agregar(campos[17]);
-
-				linea = bufferLectura.readLine();
-
+				
+				Casting temp = new Casting (Integer.parseInt(campos[0]), campos[1],Integer.parseInt(campos[2]), campos[3], Integer.parseInt(campos[4]), campos[5], Integer.parseInt(campos[6]), campos[7], Integer.parseInt(campos[8]), campos[9], Integer.parseInt(campos[10]), Integer.parseInt(campos[11]), campos[12], Integer.parseInt(campos[13]), Integer.parseInt(campos[14]), campos[15], Integer.parseInt(campos[16]), campos[17], campos[18]);
+				peliculas.getElement(i).cambiarCast(temp);
 			}
 		}
 		catch(IOException e)
@@ -137,6 +155,6 @@ public class Cinema {
 			}
 		}
 	}
-
+	
 
 }

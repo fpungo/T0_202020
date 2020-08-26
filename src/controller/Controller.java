@@ -11,7 +11,7 @@ public class Controller {
 	private Cinema modelo;
 	
 	/* Instancia de la Vista*/
-	private View view;
+	private  View view;
 	
 	/**
 	 * Crear la vista y el modelo del proyecto
@@ -27,7 +27,7 @@ public class Controller {
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-		String dato = "";
+		int dato = -1;
 		String respuesta = "";
 
 		while( !fin ){
@@ -36,24 +36,22 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
-				    int capacidad = lector.nextInt();
-				    modelo = new Cinema(capacidad); 
+				    modelo = new Cinema(3000); 
+				    modelo.CargarArchivos();
 				    view.printMessage("Arreglo Dinamico creado");
 				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 					break;
 
 				case 2:
 					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.next();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
+					dato = lector.nextInt();
+					
 					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 					break;
 
 				case 3:
 					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-					dato = lector.next();
+					dato = lector.nextInt();
 					respuesta = (String) modelo.buscar(dato);
 					if ( respuesta != null)
 					{
@@ -68,7 +66,7 @@ public class Controller {
 
 				case 4:
 					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-					dato = lector.next();
+					dato = lector.nextInt();
 					respuesta = (String) modelo.eliminar(dato);
 					if ( respuesta != null)
 					{
@@ -99,5 +97,6 @@ public class Controller {
 			}
 		}
 		
-	}	
+	}
+	
 }

@@ -1,9 +1,11 @@
 package view;
 
+import controller.Controller;
 import model.logic.Cinema;
 
 public class View 
 {
+		private Controller cont;
 	    /**
 	     * Metodo constructor
 	     */
@@ -32,4 +34,5 @@ public class View
 		{
 			// TODO implementar
 		}
+		
 }

@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-
+//CLASE EN DESARROLLO 
 public class Director implements Comparable<Director>
 {
-	public static final String SEPARATOR=";";
 	private ArrayList<String> director;
+	
 	
 	
 	public Director()
@@ -28,7 +28,7 @@ public class Director implements Comparable<Director>
 			String linea = lectura.readLine();
 
 			while (linea!= null){
-				String[] campos = linea.split(SEPARATOR);
+				String[] campos = linea.split(";");
 				director.add(campos[13]);
 				linea = lectura.readLine();
 
