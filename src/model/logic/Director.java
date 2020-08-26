@@ -1,15 +1,43 @@
 package model.logic;
 
-import model.data_structures.ArregloDinamico;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+
 
 public class Director implements Comparable<Director>
 {
-	private ArregloDinamico<Pelicula> peliculas;
+	public static final String SEPARATOR=";";
+	private ArrayList<String> director;
 	
 	
-	public Director(String id, String nombre)
+	public Director()
 	{
-		
+		director = null;
+	}
+	
+	public void guardarDirector()
+	{
+		BufferedReader lectura = null;
+		try
+		{
+			lectura = new BufferedReader(new FileReader(".//data\\SmallMoviesDetailsCleaned.csv"));
+
+			String linea = lectura.readLine();
+
+			while (linea!= null){
+				String[] campos = linea.split(SEPARATOR);
+				director.add(campos[13]);
+				linea = lectura.readLine();
+
+			}
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	
