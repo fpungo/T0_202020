@@ -100,7 +100,13 @@ public class TestArregloDinamico {
 	@Test
 	public void testInsertElement( )
 	{
-		 
+		arreglo.insertElement("0", 0);
+		assertEquals("0",arreglo.getElement(0));
+		arreglo.removeFirst();
+		setUp2();
+		arreglo.insertElement("a", 50);
+		assertEquals("a",arreglo.getElement(50));
+		assertEquals("50",arreglo.getElement(51));
 	}
 
 	@Test
